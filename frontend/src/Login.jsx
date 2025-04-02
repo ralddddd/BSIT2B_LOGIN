@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import { TextField, Button, Container, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -8,50 +8,70 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    // Event Handler for Login
+    // EVENT HANDLEr for LOGIN
     const handleLogin = async () => {
         if (!username || !password) {
-            alert("Please fill in all fields");
-            return;
+          alert("Please fill in all fields");
+          return;
         }
-
+    
         try {
-            const response = await axios.post(
-                "http://localhost:5000/login",
-                { username, password },
-                { headers: { "Content-Type": "application/json" } }
-            );
-
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("username", response.data.username);
-            alert("Login successful!");
-            navigate("/dashboard");
+          const response = await axios.post(
+            "http://localhost:5000/login", 
+            { username, password }, 
+            { headers: { "Content-Type": "application/json" } }
+          );
+    
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("username", response.data.username);
+          alert("Login successful!");
+          navigate("/dashboard");
         } catch (error) {
-            alert(error.response?.data?.message || "Invalid credentials");
+          alert(error.response?.data?.message || "Invalid credentials");
         }
     };
 
     return (
-        <Container maxWidth="xs">
-            <Typography variant="h4">Login</Typography>
-            <TextField
-                label="Username"
-                fullWidth
-                margin="normal"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+        <Container maxWidth="xs" sx={{ mt: 8 }}>
+          <Paper elevation={3} sx={{ 
+            p: 4, 
+            borderRadius: '8px',
+            backgroundColor: 'white'
+          }}>
+            <Typography variant="h4" align="center">Login</Typography>
+            <TextField 
+              label="Username" 
+              fullWidth 
+              margin="normal" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
             />
-            <TextField
-                label="Password"
-                type="password"
-                fullWidth
-                margin="normal"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            <TextField 
+              label="Password" 
+              type="password" 
+              fullWidth 
+              margin="normal" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
             />
-            <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
-                Login
+            <Button 
+              variant="contained" 
+              color="primary" 
+              fullWidth 
+              onClick={handleLogin} 
+              sx={{ mb: 2, mt: 2 }}
+            >
+              Login
             </Button>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              fullWidth 
+              onClick={() => navigate("/Register")}
+            >
+              Register
+            </Button>
+          </Paper>
         </Container>
     );
 };
