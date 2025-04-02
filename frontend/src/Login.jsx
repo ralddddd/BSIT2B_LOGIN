@@ -70,7 +70,7 @@ const Login = () => {
           onClick={handleLogin}
           sx={{ mt: 2, borderRadius: "8px", textTransform: "none" }}
         >
-          Login
+          LOGIN
         </Button>
         <Button 
           variant="contained" 

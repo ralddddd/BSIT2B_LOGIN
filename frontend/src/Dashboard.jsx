@@ -4,14 +4,20 @@ import { Container, Typography, Button, TextField } from "@mui/material";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser ] = useState("");
+  const [user, setUser] = useState("");
   const [newItem, setNewItem] = useState(""); 
   const [items, setItems] = useState([]); 
 
   useEffect(() => {
-    const storedUser  = localStorage.getItem("username");
-    if (storedUser ) {
-      setUser (storedUser );
+    const storedUser = localStorage.getItem("username");
+    if (storedUser) {
+      setUser(storedUser);
+      
+      // Load items for the logged-in user from localStorage
+      const storedItems = localStorage.getItem(`items_${storedUser}`);
+      if (storedItems) {
+        setItems(JSON.parse(storedItems));
+      }
     } else {
       navigate("/login");
     } 
@@ -21,16 +27,28 @@ const Dashboard = () => {
     if (newItem.trim() === "") return;
 
     const newItemObj = { id: Date.now(), name: newItem };
-    setItems([...items, newItemObj]);
+    const updatedItems = [...items, newItemObj];
+    setItems(updatedItems);
     setNewItem("");
+
+    // Save updated items to localStorage for the specific user
+    localStorage.setItem(`items_${user}`, JSON.stringify(updatedItems));
   };
 
   const updateItem = (id, newName) => {
-    setItems(items.map(item => (item.id === id ? { ...item, name: newName } : item)));
+    const updatedItems = items.map(item => (item.id === id ? { ...item, name: newName } : item));
+    setItems(updatedItems);
+
+    // Save updated items to localStorage
+    localStorage.setItem(`items_${user}`, JSON.stringify(updatedItems));
   };
 
   const deleteItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
+    const updatedItems = items.filter(item => item.id !== id);
+    setItems(updatedItems);
+
+    // Save updated items to localStorage
+    localStorage.setItem(`items_${user}`, JSON.stringify(updatedItems));
   };
 
   return (
