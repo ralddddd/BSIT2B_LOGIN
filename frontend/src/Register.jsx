@@ -66,6 +66,7 @@ const Register = () => {
           color="primary" 
           fullWidth 
           onClick={() => navigate("/login")}
+          sx={{ mt: 1, borderRadius: '8px', textTransform: 'none' }}
         >
           Login
         </Button>
