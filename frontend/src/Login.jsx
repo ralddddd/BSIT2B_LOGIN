@@ -77,7 +77,7 @@ const Login = () => {
           color="primary" 
           fullWidth 
           onClick={() => navigate("/")}
-          sx={{ mt: 1, borderRadius: "8px", textTransform: "none" }}
+          sx={{ mt: 1, borderRadius: "8px", textTransform: "none", backgroundColor: "#f50057", '&:hover': { backgroundColor: "#006400" } }}
         >
           GO TO REGISTER
         </Button>

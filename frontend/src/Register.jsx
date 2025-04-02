@@ -66,8 +66,7 @@ const Register = () => {
           color="primary" 
           fullWidth 
           onClick={() => navigate("/login")}
-          sx={{ mt: 1, borderRadius: "8px", textTransform: "none" }}
-        >
+          sx={{ mt: 1, borderRadius: "8px", textTransform: "none", backgroundColor: "#f50057", '&:hover': { backgroundColor: "#006400" } }}        >
           GO TO LOGIN
         </Button>
       </Paper>
