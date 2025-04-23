@@ -53,10 +53,10 @@ const Dashboard = () => {
 
   return (
     <Container sx={{ backgroundColor: '#f0f4f8', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#333', fontWeight: 'bold' }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#3f51b5', fontWeight: 'bold' }}>
         Welcome, {user}!
       </Typography>
-      <Typography variant="h5" align="center" sx={{ color: '#333', marginBottom: '20px' , fontWeight: 'bold' }}>
+      <Typography variant="h5" align="center" sx={{ color: '#3f51b5', marginBottom: '20px' , fontWeight: 'bold' }}>
         ADD OR DELETE
       </Typography>
 
