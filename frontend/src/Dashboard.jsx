@@ -53,10 +53,10 @@ const Dashboard = () => {
 
   return (
     <Container sx={{ backgroundColor: '#f0f4f8', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#3f51b5', fontWeight: 'bold' }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#333', fontWeight: 'bold' }}>
         Welcome, {user}!
       </Typography>
-      <Typography variant="h5" align="center" sx={{ color: '#3f51b5', marginBottom: '20px' }}>
+      <Typography variant="h5" align="center" sx={{ color: '#333', marginBottom: '20px' , fontWeight: 'bold' }}>
         ADD OR DELETE
       </Typography>
 
@@ -68,7 +68,7 @@ const Dashboard = () => {
         onChange={(e) => setNewItem(e.target.value)}
         sx={{ marginBottom: '20px', borderRadius: '4px' }}
       />
-      <Button variant="contained" color="primary" fullWidth onClick={addItem} sx={{ backgroundColor: '#3f51b5', '&:hover': { backgroundColor: '#303f9f' } }}>
+      <Button variant="contained" color="primary" fullWidth onClick={addItem} sx={{ backgroundColor: '#3f51b5', '&:hover': { backgroundColor: '#008000' } }}>
         Add Item
       </Button>
 
@@ -88,7 +88,7 @@ const Dashboard = () => {
         ))}
       </ul>
 
-      <Button variant="contained" color="secondary" fullWidth sx={{ mt: 2, backgroundColor: '#f50057', '&:hover': { backgroundColor: '#c51162' } }} onClick={() => {
+      <Button variant="contained" color="secondary" fullWidth sx={{ mt: 2, backgroundColor: '#3f51b5', '&:hover': { backgroundColor: '#f50057' } }} onClick={() => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         navigate("/login");

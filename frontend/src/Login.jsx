@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import { TextField, Button, Container, Typography, Box, IconButton, InputAdornment } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -36,7 +38,7 @@ const Login = () => {
         sx={{ 
           textAlign: "center", 
           p: 3, 
-          borderRadius: 2, 
+          borderRadius:"16px", 
           boxShadow: 3, 
           backgroundColor: "#f9f9f9" 
         }}
@@ -55,13 +57,31 @@ const Login = () => {
         />
         <TextField
           label="Password"
-          type="password"
+          type={showPassword ? "text" : "password"} // Toggle between text and password
           fullWidth
           margin="normal"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           variant="outlined"
           sx={{ backgroundColor: "white" }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)} // Toggle visibility
+                  edge="end"
+                  sx={{
+                    color: "#1976d2", // Customize icon color
+                    "&:hover": {
+                      color: "#004ba0", // Darker shade on hover
+                    },
+                  }}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Button
           variant="contained"
@@ -72,15 +92,24 @@ const Login = () => {
         >
           LOGIN
         </Button>
-        <Button 
-          variant="contained" 
-          color="primary" 
-          fullWidth 
-          onClick={() => navigate("/")}
-          sx={{ mt: 1, borderRadius: "8px", textTransform: "none", backgroundColor: "#f50057", '&:hover': { backgroundColor: "#006400" } }}
-        >
-          GO TO REGISTER
-        </Button>
+        <Typography 
+         variant="body2" 
+         align="center" 
+         sx={{ mt: 2, color: "#333" }} 
+          >
+         Don’t have an account?{" "}
+        <span 
+         onClick={() => navigate("/")} 
+          style={{ 
+            color: "#1976d2", 
+            cursor: "pointer", 
+            textDecoration: "underline", 
+           fontWeight: "bold" 
+    }}
+  >
+    Sign up
+  </span>
+</Typography>
       </Box>
     </Container>
   );
